@@ -1,21 +1,39 @@
-"""restaurant URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 
+from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
+
+from users.views import RegisterView, BlacklistTokenView, UserView, EmployeeView
+from place.views import CreateRestaurantView, RestaurantView
+from menus.views import CreateMenuView, MenuView, CreateVoteView, VoteView
+
+
 urlpatterns = [
+    # authorization and authentication :
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('register/', RegisterView.as_view(), name='create_user'),
+    path('logout/', BlacklistTokenView.as_view(), name='blacklist'),
     path('admin/', admin.site.urls),
+
+    # users :
+    path('users_list/', UserView.as_view(), name='users'),
+
+    # employees :
+    path('employee/', EmployeeView.as_view(), name='employee'),
+
+    # restaurants :
+    path('restaurant/', CreateRestaurantView.as_view(), name='create_restaurant'),
+    path('restaurants_list/', RestaurantView.as_view(), name='restaurants'),
+
+    # menus :
+    path('menu/', CreateMenuView.as_view(), name='create_menu'),
+    path('menus_list/', MenuView.as_view(), name='menus'),
+
+    # votes :
+    path('vote/', CreateVoteView.as_view(), name='create_vote'),
+    path('votes_list/', VoteView.as_view(), name='votes'),
+
+    # results :
+
 ]
