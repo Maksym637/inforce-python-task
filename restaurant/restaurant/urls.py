@@ -33,7 +33,4 @@ urlpatterns = [
     # votes :
     path('vote/', CreateVoteView.as_view(), name='create_vote'),
     path('votes_list/', VoteView.as_view(), name='votes'),
-
-    # results :
-
 ]
