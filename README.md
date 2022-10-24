@@ -12,7 +12,8 @@ Simple Back End part with REST architecture :
 ### How to run project :
 1. To run a **server** you need call command : `python manape.py runserver`
 2. To run **tests** you need call command : `python manage.py test`
-_All do it in dir restaurant/_
+
+All do it in dir _restaurant/_
 - - -
 ### API endpoints :
 1. User : `register/`, `users/`
