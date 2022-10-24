@@ -17,20 +17,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # users :
-    path('users_list/', UserView.as_view(), name='users'),
+    path('users/', UserView.as_view(), name='users'),
 
     # employees :
-    path('employee/', EmployeeView.as_view(), name='employee'),
+    path('employees/', EmployeeView.as_view(), name='employee'),
 
     # restaurants :
-    path('restaurant/', CreateRestaurantView.as_view(), name='create_restaurant'),
-    path('restaurants_list/', RestaurantView.as_view(), name='restaurants'),
+    path('restaurant/create/', CreateRestaurantView.as_view(), name='create_restaurant'),
+    path('restaurants/', RestaurantView.as_view(), name='restaurants'),
 
     # menus :
-    path('menu/', CreateMenuView.as_view(), name='create_menu'),
-    path('menus_list/', MenuView.as_view(), name='menus'),
+    path('menu/create/', CreateMenuView.as_view(), name='create_menu'),
+    path('menus/', MenuView.as_view(), name='menus'),
 
     # votes :
-    path('vote/', CreateVoteView.as_view(), name='create_vote'),
-    path('votes_list/', VoteView.as_view(), name='votes'),
+    path('vote/create/', CreateVoteView.as_view(), name='create_vote'),
+    path('votes/', VoteView.as_view(), name='votes'),
 ]

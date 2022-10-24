@@ -5,7 +5,7 @@ from rest_framework.test import APITestCase
 from users.models import User
 
 
-class RestaurantTest(APITestCase):
+class RestaurantTests(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user('user@user.com', 'username', 'password')
         self.user.save()
