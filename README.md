@@ -9,7 +9,7 @@ Simple Back End part with REST architecture :
 - PostgreSQL
 - Testing
 
-(The project settings are in the folder : _restaurant/_restaurant/_)
+(The project settings are in the folder : _restaurant/restaurant/_)
 - - - 
 ### How to run project :
 1. To run a **server** you need call command : `python manape.py runserver`
