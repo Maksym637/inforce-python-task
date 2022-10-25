@@ -27,12 +27,12 @@ class UserManager(BaseUserManager):
             raise ValueError(_('You must provide a username'))
         if not password:
             raise ValueError(_('You must provide a password'))
-        
+
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, **other_fields)
         user.set_password(password)
         user.save()
-        
+
         return user
 
 
@@ -55,13 +55,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
-   
+
 
 class Employee(models.Model):
     class Meta:
         db_table = 'employees'
         ordering = ['-id']
-    
+
     employee_no = models.CharField(max_length=50, unique=True, null=True, blank=True)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

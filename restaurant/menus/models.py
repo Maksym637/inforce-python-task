@@ -7,10 +7,10 @@ class Menu(models.Model):
     class Meta:
         db_table = 'menus'
         ordering = ['-id']
-    
+
     restaurant = models.ForeignKey(Restaurant, null=True, blank=True, on_delete=models.CASCADE)
     file_contant = models.FileField(upload_to='content/', null=True)
-    votes =  models.IntegerField(default=0)
+    votes = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.CharField(max_length=50, null=True, blank=True)

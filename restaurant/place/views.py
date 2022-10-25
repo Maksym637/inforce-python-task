@@ -9,7 +9,7 @@ from .serializers import RestaurantSerializer
 
 class CreateRestaurantView(APIView):
     permission_classes = (IsAuthenticated,)
-    
+
     def post(self, request, format=None):
         request_data = request.data
         serializer = RestaurantSerializer(data=request_data)

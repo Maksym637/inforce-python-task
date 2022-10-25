@@ -20,7 +20,7 @@ class UserCreateTests(APITestCase):
 
         data = {
             'email': 'user@user.com',
-            'username': 'user', 
+            'username': 'user',
             'password': 'password'
         }
 
