@@ -3,7 +3,7 @@ from django.urls import path
 
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
-from users.views import RegisterView, BlacklistTokenView, UserView, EmployeeView
+from users.views import RegisterView, LogoutView, UserView, EmployeeView, CreateEmployeeView
 from place.views import CreateRestaurantView, RestaurantView
 from menus.views import CreateMenuView, MenuView, CreateVoteView, VoteView
 
@@ -13,14 +13,15 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', RegisterView.as_view(), name='create_user'),
-    path('logout/', BlacklistTokenView.as_view(), name='blacklist'),
+    path('logout/', LogoutView.as_view(), name='blacklist'),
     path('admin/', admin.site.urls),
 
     # users :
     path('users/', UserView.as_view(), name='users'),
 
     # employees :
-    path('employees/', EmployeeView.as_view(), name='employee'),
+    path('employee/create/', CreateEmployeeView.as_view(), name='create_employee'),
+    path('employees/', EmployeeView.as_view(), name='employees'),
 
     # restaurants :
     path('restaurant/create/', CreateRestaurantView.as_view(), name='create_restaurant'),

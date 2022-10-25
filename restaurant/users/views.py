@@ -29,27 +29,30 @@ class UserView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class BlacklistTokenView(APIView):
+class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, format=None):
         try:
             refresh_token = request.data["refresh_token"]
-            print(request.data["refresh_token"])
             token = RefreshToken(refresh_token)
             token.blacklist()
-            return Response(status=status.HTTP_200_OK)
+            return Response({'detail': 'You are logged out.'}, status=status.HTTP_205_RESET_CONTENT)
         except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class EmployeeView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     def get(self, request):
         employee = Employee.objects.all()
         serializer = EmployeerSerializer(employee, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CreateEmployeeView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, format=None):
         serializer = EmployeerSerializer(data=request.data)
