@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  database:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    env_file: .env_file
+    ports:
+      - "5432:5432"
+
+  tests:
+    build: .
+    command: python manage.py test
+    env_file: .env_file
+
+  web:
+    build: .
+    command: >
+      bash -c "python manage.py migrate 
+      && python manage.py runserver 0.0.0.0:8000"
+    env_file: .env_file
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
