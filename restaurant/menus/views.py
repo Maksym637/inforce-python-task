@@ -1,6 +1,3 @@
-from django.db.models import Q
-from django.conf import settings
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -26,9 +23,8 @@ class MenuView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request):
-        todays_date = settings.CURRENT_DATE.date()
-        qs = Menu.objects.filter(Q(created_at__date=todays_date))
-        serializer = MenuSerializer(qs, many=True)
+        menu = Menu.objects.all()
+        serializer = MenuSerializer(menu, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
